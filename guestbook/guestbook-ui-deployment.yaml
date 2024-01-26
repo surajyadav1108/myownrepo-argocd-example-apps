@@ -14,7 +14,10 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
-        name: guestbook-ui
+      - name: guestbook-ui
+        image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         ports:
         - containerPort: 80
+      - name: failing-container
+        image: your/failing-image:latest  # Replace with your actual failing image
+        command: ["/bin/sh", "-c", "exit 1"]  # Intentionally failing command
