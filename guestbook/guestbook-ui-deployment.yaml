@@ -19,5 +19,5 @@ spec:
         ports:
         - containerPort: 80
       - name: failing-container
-        image: your/failing-image:latest  # Replace with your actual failing image
-        command: ["/bin/sh", "-c", "exit 1"]  # Intentionally failing command
+        image: busybox:latest  
+        command: ["/bin/sh", "-c", "echo 'Failing container'; exit 1"]
