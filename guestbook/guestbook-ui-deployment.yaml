@@ -18,9 +18,21 @@ spec:
         image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         ports:
         - containerPort: 80
-      - name: failing-container
+      - name: failing-container-1
         image: busybox:latest  
-        command: ["/bin/sh", "-c", "echo 'Failing container'; exit 1"]
+        command: ["/bin/sh", "-c", "echo 'Failing container 1'; exit 2"]
         resources:
           limits:
-            memory: "64Mi"  # Set a small memory limit to trigger OOM kill
+            memory: "64Mi"
+      - name: failing-container-2
+        image: busybox:latest  
+        command: ["/bin/sh", "-c", "echo 'Failing container 2'; exit 3"]
+        resources:
+          limits:
+            memory: "64Mi"
+      - name: failing-container-3
+        image: busybox:latest  
+        command: ["/bin/sh", "-c", "echo 'Failing container 3'; exit 4"]
+        resources:
+          limits:
+            memory: "64Mi"
