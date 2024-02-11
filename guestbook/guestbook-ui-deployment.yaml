@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
 spec:
-  replicas: 5
+  replicas: 3
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -18,7 +18,7 @@ spec:
         image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         ports:
         - containerPort: 80
-      - name: failing-container-45
+      - name: failing-container-1
         image: busybox:latest  
         command: ["/bin/sh", "-c", "echo 'Failing container 1'; stress --vm 1 --vm-bytes 256M --timeout 10s"]
         resources:
@@ -30,7 +30,7 @@ spec:
         resources:
           limits:
             memory: "64Mi"
-      - name: failing-container-5
+      - name: failing-container-3
         image: busybox:latest  
         command: ["/bin/sh", "-c", "echo 'Failing container 3'; stress --vm 1 --vm-bytes 256M --timeout 10s"]
         resources:
