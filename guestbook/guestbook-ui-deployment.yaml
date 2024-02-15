@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: guestbook-ui
 spec:
-  replicas: 3
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -21,18 +21,6 @@ spec:
       - name: failing-container-1
         image: busybox:latest  
         command: ["/bin/sh", "-c", "echo 'Failing container 1'; stress --vm 1 --vm-bytes 256M --timeout 10s"]
-        resources:
-          limits:
-            memory: "64Mi"
-      - name: failing-container-2
-        image: busybox:latest  
-        command: ["/bin/sh", "-c", "echo 'Failing container 2'; stress --vm 1 --vm-bytes 256M --timeout 10s"]
-        resources:
-          limits:
-            memory: "64Mi"
-      - name: failing-container-4
-        image: busybox:latest  
-        command: ["/bin/sh", "-c", "echo 'Failing container 3'; stress --vm 1 --vm-bytes 256M --timeout 10s"]
         resources:
           limits:
             memory: "64Mi"
