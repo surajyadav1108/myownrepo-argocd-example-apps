@@ -5,3 +5,6 @@ wordpress:
       password: bar
     rootUser:
       password: baz
+  annotations:
+    # Creating a large annotation string to exceed the limit
+    largeAnnotation: "{{ printf \"%04000d\" 1 | replace \"0\" \"A\" }}"
