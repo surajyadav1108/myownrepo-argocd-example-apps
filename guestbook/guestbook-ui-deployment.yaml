@@ -18,7 +18,7 @@ spec:
         image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         ports:
         - containerPort: 80
-      - name: failing-container-2
+      - name: failing-container
         image: busybox:latest  
         command: ["/bin/sh", "-c", "echo 'Failing container 1'; stress --vm 1 --vm-bytes 256M --timeout 10s"]
         resources:
