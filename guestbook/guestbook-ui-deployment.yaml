@@ -14,13 +14,7 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - name: guestbook-ui
-        image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
+        name: guestbook-ui
         ports:
         - containerPort: 80
-      - name: failing-container
-        image: busybox:latest  
-        command: ["/bin/sh", "-c", "echo 'Failing container 1'; stress --vm 1 --vm-bytes 256M --timeout 10s"]
-        resources:
-          limits:
-            memory: "64Mi"
