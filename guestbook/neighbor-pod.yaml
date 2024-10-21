@@ -3,12 +3,12 @@ kind: Pod
 metadata:
   name: neighbor-pod
   labels:
-    app: neighbor-pod
+    app: neighbor-pod  # Ensure the label here is unique and different from guestbook-ui
 spec:
   containers:
   - name: neighbor-container
     image: busybox
-    command: ['sh', '-c', 'echo Hello from Neighbor Pod && sleep 3600']  # Simulates a running container
+    command: ['sh', '-c', 'echo Hello from Neighbor Pod && sleep 3600']
     resources:
       requests:
         memory: "32Mi"
@@ -17,4 +17,4 @@ spec:
         memory: "64Mi"
         cpu: "200m"
     ports:
-    - containerPort: 80  # Example port, can be changed
+    - containerPort: 80
