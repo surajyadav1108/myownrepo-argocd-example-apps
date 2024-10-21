@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: neighbor-pod
+  labels:
+    app: neighbor-pod
+spec:
+  containers:
+  - name: neighbor-container
+    image: busybox
+    command: ['sh', '-c', 'echo Hello from Neighbor Pod && sleep 3600']  # Simulates a running container
+    resources:
+      requests:
+        memory: "32Mi"
+        cpu: "100m"
+      limits:
+        memory: "64Mi"
+        cpu: "200m"
+    ports:
+    - containerPort: 80  # Example port, can be changed
