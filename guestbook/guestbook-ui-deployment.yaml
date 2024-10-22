@@ -23,5 +23,9 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+      initContainers:
+      - name: init-myservice 
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 60; done"]
         ports:
         - containerPort: 80
