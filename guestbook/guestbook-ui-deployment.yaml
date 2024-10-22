@@ -16,6 +16,8 @@ spec:
       containers:
       - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
         name: guestbook-ui
+        ports:
+        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"
@@ -24,8 +26,6 @@ spec:
             memory: "128Mi"
             cpu: "500m"
       initContainers:
-      - name: init-myservice 
-        image: busybox:1.28
-        command: ['sh', '-c', "until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 60; done"]
-        ports:
-        - containerPort: 80
+      - name: init-demo
+        image: busybox
+        command: ['sh', '-c', 'echo "Sleeping..." && sleep 50 && echo "Done sleeping"']
