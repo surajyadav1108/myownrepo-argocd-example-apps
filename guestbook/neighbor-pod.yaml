@@ -27,13 +27,3 @@ spec:
       containers:
       - name: neighbor-container
         image: nginx:latest  # Example image
-      - name: short-lived-container
-        image: busybox
-        command: ["sh", "-c", "echo 'Task complete'; sleep 20"]
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "100Mi"
-            cpu: "300m"
