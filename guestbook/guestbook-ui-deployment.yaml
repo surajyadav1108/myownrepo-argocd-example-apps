@@ -25,3 +25,13 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+      - name: short-lived-container
+        image: busybox
+        command: ["sh", "-c", "echo 'Task complete'; sleep 5"]
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "64Mi"
+            cpu: "250m"
