@@ -27,7 +27,10 @@ spec:
       containers:
       - name: neighbor-container
         image: nginx:latest  # Example image
-        command: ["/bin/sh", "-c", "sleep 120 && exit 1"]  # Runs for 2 minutes and then fails
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 120 && exit 1"]  # Runs for 2 minutes and then terminates
         resources:
           requests:
             memory: "64Mi"
@@ -35,7 +38,6 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        restartPolicy: Never  # Prevents the container from restarting after failure
       initContainers:
       - name: init-container
         image: busybox
