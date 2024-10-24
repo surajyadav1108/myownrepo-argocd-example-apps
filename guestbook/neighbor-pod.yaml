@@ -30,7 +30,7 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh", "-c", "sleep 120 && exit 1"]  # Runs for 2 minutes and then terminates
+              command: ["/bin/sh", "-c", "sleep 60 && exit 0"]  # Runs for 2 minutes and then terminates
         resources:
           requests:
             memory: "64Mi"
