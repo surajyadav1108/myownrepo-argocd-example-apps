@@ -27,10 +27,7 @@ spec:
       containers:
       - name: neighbor-container
         image: nginx:latest  # Example image
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/sh", "-c", "sleep 60 && exit 0"]  # Runs for 2 minutes and then terminates
+        command: ["/bin/sh", "-c", "nginx & sleep 60 && nginx -s quit"]  # Run NGINX for 1 minute and terminate gracefully
         resources:
           requests:
             memory: "64Mi"
