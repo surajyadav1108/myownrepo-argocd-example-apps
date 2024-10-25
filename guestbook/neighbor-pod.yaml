@@ -36,8 +36,3 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        # Modify the NGINX container to exit with a success code
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/sh", "-c", "sleep 30; nginx -s quit; exit 0"]  # Graceful shutdown after 30 seconds
