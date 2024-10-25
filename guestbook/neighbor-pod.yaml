@@ -14,16 +14,16 @@ spec:
       labels:
         app: neighbor-test
     spec:
-      affinity:
+      affinity:  # Keep the affinity section for desired placement
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - guestbook-ui  # Match your guestbook app label
-            topologyKey: kubernetes.io/hostname  # Ensure same node placement
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - guestbook-ui  # Match your guestbook app label
+              topologyKey: kubernetes.io/hostname  # Ensure same node placement
       containers:
       - name: neighbor-container
         image: nginx:latest  # Use NGINX as a running web server
@@ -36,14 +36,9 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-      initContainers:
-      - name: init-container
-        image: busybox
-        command: ["sh", "-c", "sleep 60"]  # Init container sleeps for 60 seconds
-        resources:
-          requests:
-            memory: "32Mi"
-            cpu: "100m"
-          limits:
-            memory: "64Mi"
-            cpu: "200m"
+        # Modify the NGINX container to exit with a success code
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 30; nginx -s quit; exit 0"]  # Graceful shutdown after 30 seconds
+      restartPolicy: Never
