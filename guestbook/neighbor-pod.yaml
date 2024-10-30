@@ -29,10 +29,10 @@ spec:
         image: nginx:latest  # Use NGINX as a running web server
         ports:
         - containerPort: 80  # Standard port for NGINX
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "250m"
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        # resources:
+        #   requests:
+        #     memory: "64Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
