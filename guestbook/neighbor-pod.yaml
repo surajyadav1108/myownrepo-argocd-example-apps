@@ -27,7 +27,6 @@ spec:
       containers:
       - name: neighbor-container
         image: nginx:latest  # Use NGINX as a running web server
-        command: ["/bin/sh", "-c", "exit 1"]  # Force the container to exit with an error (exit code 1)
         ports:
         - containerPort: 80  # Standard port for NGINX
         resources:
