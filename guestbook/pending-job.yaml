@@ -15,6 +15,6 @@ spec:
             cpu: "5000m"
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "5001m"
       restartPolicy: Never
   backoffLimit: 4
