@@ -27,6 +27,7 @@ spec:
       containers:
       - name: neighbor-container
         image: nginx:latest  # Use NGINX as a running web server
+        command: ["sh", "-c", "exit 42"]
         ports:
         - containerPort: 80  # Standard port for NGINX
         resources:
