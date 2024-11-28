@@ -36,3 +36,13 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+      - name: delay-container
+        image: busybox  # Lightweight container for the delay
+        command: ["sh", "-c", "echo Starting delay; sleep 120; echo Done"]  # Simulate a delay
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "64Mi"
+            cpu: "200m"
