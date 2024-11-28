@@ -25,6 +25,10 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sh", "-c", "echo 'Terminating...' && sleep 60"]
       initContainers:
       - name: init-demo
         image: busybox
