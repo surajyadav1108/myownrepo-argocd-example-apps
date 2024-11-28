@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-      - name: example-pending-job
+      - name: example
         image: busybox
         command: ["sh", "-c", "echo Hello Kubernetes! && sleep 60"]
         resources:
