@@ -25,12 +25,6 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        readinessProbe:
-          exec:
-            command:
-              - sh
-              - -c
-              - 'exit 1'  # This will cause the readiness probe to fail
           initialDelaySeconds: 10
           periodSeconds: 5
         lifecycle:
