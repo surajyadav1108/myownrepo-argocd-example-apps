@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: orphaned-pod
-  namespace: <application-namespace>
+  namespace: argocd
 spec:
   containers:
     - name: busybox
