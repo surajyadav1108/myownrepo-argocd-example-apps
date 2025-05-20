@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: failing-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: example
+        image: busybox
+        command: ["sh", "-c", "echo Hello Kubernetes! && sleep 120 && exit 1"]
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      restartPolicy: Never
+  backoffLimit: 4
