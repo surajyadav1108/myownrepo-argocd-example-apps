@@ -1,19 +1,18 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: bad-deployment
+  name: sync-error-demo
+  namespace: argocd
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: bad-app
-  template:
-    metadata:
-      labels:
-        app: bad-app
-    spec:
-      containers:
-        - name: bad-container
-          image: nginx
-          ports:
-            - containerPort: "eighty"  # ❌ invalid: must be a number, not a string
+  project: default
+  source:
+    repoURL: https://github.com/your-user/sync-fail-demo.git
+    targetRevision: HEAD
+    path: bad/path/does-not-exist  # ❌ this will cause a sync error
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated: {}
